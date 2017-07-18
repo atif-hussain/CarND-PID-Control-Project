@@ -1,0 +1,21 @@
+//	Manually Tweaked initial Kp, Ki, Kd values.
+
+// Throttle
+// observed behaviour, driving too slow preferably made faster for faster simulation, so increased throttle from given initial 0.3 to 0.8
+// Behavior became more abrupt, and vehicle difficult to control. So reduced throttle and reverted back to throttle=0.3
+
+// Manual tweaking. start with kp=kd=ki=0.1 for 10 turns, ie. 0.1, .01, 1.0 
+
+// Noticed vehicle slowly starting to go out of track. During this action, it retains high CTE for many time periods  
+// When CTE is high on 1 side of 0 then integral term starts dominating (as sum is increasing). This creates going off path and coming back too late, 
+// and then with higher magnitude and intensity; and finally when steer is capped, it doesn't even easily return. 
+// To reduce this action, drastically reduced ki from 0.01 to ki=0.001 ; Gave very improved behavior, with only fine tweaking left
+
+
+// observed behaviour, lot of wobbling, so increase kd significantly kd=2.0
+
+// observed behaviour, slight bias to right, negligible. To overcome this bias, halved ki to ki=0.0005
+
+// For testing repeated iterations with different kp,ki,kd values, parameterized these and read from stdin. 
+// This was especially helpful for a lot of failed trials testing using higher values of throttle. 
+
